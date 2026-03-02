@@ -113,7 +113,7 @@
 //     }
 // }
 // let arr = "Javascript";
-// let arrSub = "qava";
+// let arrSub = "Java";
 // isSubstr(arr, arrSub);
 
 
