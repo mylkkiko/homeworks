@@ -3,68 +3,43 @@
 // Task 1
 // function countSym(str) {
 //     let count = 0;
-
-//     if(typeof str === "string") {
-//         for(let i = 0; i < str.length; i++) {
-//             count++;
-//         }
-//         return count;
-//     } else {
-//         console.log("It should be string!");
+//     for(let i = 0; i < str.length; ++i) {
+//         count++;
 //     }
+//     return count;
 // }
-// console.log(countSym(6574));
-
+// console.log(countSym("Hello"));
 
 
 // Task 2
-// function uppercase(str) {
-//     if(typeof str === "string") {
-//         for(let i = 0; i < str.length; i++) {
-//             return str.toUpperCase();
-//         }
-//     } else {
-//         console.log("It should be string!");
-//     }
+// function upper(str) {
+//     return str.toUpperCase();
 // }
-// console.log(uppercase("heLlo"));
-
+// console.log(upper("hello"));
 
 
 // Task 3
-// function sumNumber(a, b) {
-//     return a + b;
+// function sumNums(num1, num2) {
+//     return num1 + num2;
 // }
-
-// let a = 5;
-// let b = 7;
-
-// console.log(sumNumber(a, b));
-
+// console.log(sumNums(15, 12));
 
 
 // Task 4
-// function reverse(str) {
-//     let line = "";
-//     if(typeof str === "string") {
-//         for(let i = 0; i <= str.length; i++) {
-//             console.log(str[str.length - i]);
-//         }
-//     } else {
-//         console.log("It should be string!");
+// function reverseString(str) {
+//     let newStr = "";
+//     for (let i = str.length - 1; i >= 0; i--) {
+//         newStr += str[i];
 //     }
+    
+//     return newStr;
 // }
-// console.log(reverse("hello"));
-
+// console.log(reverseString("hello")); 
 
 
 // Task 5
 // let str = "Learn Javascript";
-// if(str.includes("Java")) {
-//     console.log("true");
-// } else {
-//     console.log("false");
-// }
+// console.log(str.includes("qava"));
 
 
 // Task 6
@@ -77,10 +52,8 @@
 //         }
 //     }
 // }
-
 // let numList = [3, 6, 9, 12];
 // indexArr(numList, 15);
-
 
 
 // Task 7
@@ -93,7 +66,6 @@
 // }
 // let expenses = [50, 75, 100];
 // console.log(sumElements(expenses));
-
 
 
 // Task 8
@@ -125,10 +97,8 @@
 //     }
 //     return sum;
 // }
-
 // let numbers = [10, 20, 15, 55];
 // console.log(sumElements(numbers));
-
 
 
 // Task 10
@@ -139,9 +109,7 @@
 //         console.log("Number is odd");
 //     }
 // }
-
 // console.log(oddEven(142));
-
 
 
 // Task 11
@@ -152,11 +120,10 @@
     
 //     return typeof value;
 // }
-
 // console.log(getExactType(null));       
 // console.log(getExactType([1, 2, 3]));  
 // console.log(getExactType({}));         
-// console.log(getExactType(42));          
+// console.log(getExactType(42));       
 
 
 // Task 12
@@ -165,7 +132,6 @@
 //         console.log("true");
 //         return;
 //     }
-    
 //     switch(value) {
 //         case 0:
 //         case "":
@@ -178,41 +144,29 @@
 //             console.log("false");
 //     }
 // }
-
 // isTrue(NaN);
-
 
 
 // Task 13
 // function comparison(variable1, variable2) {
-//     if(variable1 == variable2) {
-//         console.log("true");
-//     } else {
-//         console.log("false");
-//     }
-
-//     if(variable1 === variable2) {
-//         console.log("true");
-//     } else {
-//         console.log("false");
-//     }
+//     return {
+//         strict: variable1 === variable2,
+//         non_strict: variable1 == variable2
+//     };
 // }
-// comparison(5, 5);
-// comparison(NaN, NaN);
-// comparison("5", 5);
-
+// console.log(comparison(5, 5));
+// console.log(comparison("5", 5));
 
 
 // Task 14
 // function isNum(number) {
-//     if(typeof number === "number" && number == NaN) {
-//         console.log("true");
+//     if(typeof number === "number" && !Number.isNaN(number)) {
+//         return true;
 //     } else {
-//         console.log("false");
+//         return false;
 //     }
 // }
-// isNum(NaN);
-
+// console.log(isNum(NaN));
 
 
 // Task 15
@@ -223,24 +177,29 @@
 //     }
 //     return num;
 // }
-// console.log(ifNan("a5"));
+// console.log(ifNan([5]));
 
 
 // Task 16
 // function inBool(variable) {
-//     let num = typeof variable;
-//     switch(num) {
+//     let type = typeof variable;
+//     switch(type) {
 //         case "number":
 //         case "string":
-//         case "null":
-//         case "object":
 //         case "undefined":
-//         case "array":
+//         case "object":
 //             console.log(Boolean(variable));
-//         break;
+//             break;
+//         case Array.isArray(variable):
+//             console.log(Boolean(variable));
+//             break;
+//         default:
+//             console.log("Other type:", Boolean(variable));
 //     }
 // }
-// inBool(null);
+// inBool([]);    
+// inBool(0);    
+// inBool(NaN); 
 
 
 // Task 17
@@ -252,18 +211,16 @@
 //         case "boolean":
 //         case "symbol":
 //         case "undefined":
-//             console.log("true");
-//         break;
+//             return true;
 //         default:
-//             console.log("false");
+//             return false;
 //     }
 // }
 // let arr = [1, 2, 3];
-// isPrimitive(arr);
+// console.log(isRefer(arr));
 
 
-
-// Task 18
+// Task 17
 // function isPrimitive(variable) {
 //     let num = typeof variable;
 //     switch(num) {
@@ -283,12 +240,33 @@
 // isPrimitive(arr);
 
 
+// Task 18
+// function isPrimitive(variable) {
+//     if (variable === null) return true;
+//     let type = typeof variable;
+
+//     switch(type) {
+//         case "number":
+//         case "string":
+//         case "boolean":
+//         case "symbol":
+//         case "undefined":
+//         case "bigint":
+//             return true;
+//         default:
+//             return false;
+//     }
+// }
+// let a = undefined;
+// console.log(isPrimitive(null));
+
+
 // Task 19
 // function sumNumbers(n1, n2) {
 //     if(typeof n1 === "number" && typeof n2 === "number") {
 //         return n1 + n2;
 //     } else {
-//         console.log("Invalid input");
+//         return "Invalid input";
 //     }
 // }
 // console.log(sumNumbers(5, "12"));

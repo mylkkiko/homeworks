@@ -1,10 +1,13 @@
 "use strict"
 // Task 1
 // function isEven(number) {
-//     number % 2 == 0 ? console.log (true) : console.log (false);
+//     if(number % 2 === 0)
+//         return true;
+//     else 
+//         return false;
+    
 // }
-// isEven(0);
-
+// console.log(isEven(5));
 
 
 // Task 2
@@ -15,7 +18,6 @@
 //     }
 //     return res;
 // }
-
 // console.log(sumUpTo(25));
 
 
@@ -76,13 +78,16 @@
 
 // Task 7
 // function countChar(str, char) {
-// if(typeof str === "string" || typeof char === "string") console.log("It should be string!");
-//     let count = 0;
-//     for(let i = 0; i < str.length; i++) {
-//         if(str[i] === char) 
-//             count++;
+//     if(typeof str === "string" && typeof char === "string") {
+//         let count = 0;
+//         for(let i = 0; i < str.length; i++) {
+//             if(str[i] === char) 
+//                 count++;
+//         }
+//         return count;
+//     } else {
+//         console.log("It should be string!")
 //     }
-//     return count;
 // }
 // console.log(countChar("JavaScript", "a"));
 
@@ -106,14 +111,13 @@
 
 // Task 10
 // function contains(arr, value) {
-//     for(let i of arr) {
+//     for(let i = 0; i < arr.length; i++) {
 //         if(arr[i] === value)
 //             return true;
-//         else
-//             return false;
 //     }
+//     return false;
 // }
-// console.log(contains([1, 5, 3], 2));
+// console.log(contains([], 6));
 
 
 
@@ -131,12 +135,13 @@
 
 
 // Task 12
-function firstAndLast(arr) {
-    if(arr === 0){return 1};
-    let newArr=[];
-    newArr[0] = arr[0];
-    newArr[1] = arr[arr.length - 1];
-    return newArr;
-}
-
-console.log(firstAndLast([1, 2, 3]));
+// function firstAndLast(arr) {
+//     if(arr.length === 0){
+//         return "The array must be filled with values!";
+//     };
+//     let newArr=[];
+//     newArr[0] = arr[0];
+//     newArr[1] = arr[arr.length - 1];
+//     return newArr;
+// }
+// console.log(firstAndLast([1, 2, 3, 4, 7, 10]));
