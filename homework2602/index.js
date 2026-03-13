@@ -34,6 +34,7 @@
     
 //     return newStr;
 // }
+
 // console.log(reverseString("hello")); 
 
 
@@ -220,31 +221,10 @@
 // console.log(isRefer(arr));
 
 
-// Task 17
-// function isPrimitive(variable) {
-//     let num = typeof variable;
-//     switch(num) {
-//         case "number":
-//         case "string":
-//         case "boolean":
-//         case "symbol":
-//         case "undefined":
-//         case "null":
-//             console.log("true");
-//         break;
-//         default:
-//             console.log("false");
-//     }
-// }
-// let arr = [1, 2, 3];
-// isPrimitive(arr);
-
-
 // Task 18
 // function isPrimitive(variable) {
 //     if (variable === null) return true;
 //     let type = typeof variable;
-
 //     switch(type) {
 //         case "number":
 //         case "string":
