@@ -17,7 +17,7 @@ class Book {
     
     set title(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error("The title of the book cannot be empty");
+            throw new Error ("The title of the book cannot be empty");
         }
         return this.#title = value;
     };
@@ -28,7 +28,7 @@ class Book {
 
     set author(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error("The author of the book cannot be empty");
+            throw new Error ("The author of the book cannot be empty");
         }
         return this.#author = value;
     };
@@ -39,7 +39,7 @@ class Book {
 
     set year(value) {
         if(value < 0) {
-            throw new Error("The year of publication cannot be a negative number");
+            throw new Error ("The year of publication cannot be a negative number");
         }
         return this.#year = value;
     };
@@ -50,20 +50,20 @@ class Book {
 
     borrowBook() {
         if(!this.#isAvailable) {
-            throw new Error("Book is already borrowed");
+            return "Book is already borrowed";
         }
         return this.#isAvailable = false;
     };
 
     returnBook() {
         if(this.#isAvailable) {
-            throw new Error ("Book is already available");
+            return "Book is already available";
         } 
         return this.#isAvailable = true;
     };
 
     matchesTitle(word) {
-        return this.title.includes(word) ? true : false;
+        return this.title.includes(word);
     };
 
     getInfo() {
@@ -86,7 +86,7 @@ class Reader {
 
     set name(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error("The name of the reader cannot be empty");
+            return "The name of the reader cannot be empty";
         }
         return this.#name = value;
     };
@@ -104,17 +104,18 @@ class Reader {
             this.#borrowedBooks.push(book);
             book.borrowBook();
         } else {
-            throw new Error(`Book "${book.title}" is not available`);
+            return `Book "${book.title}" is not available`;
         }
     };
 
     giveBackBook(book) {
         let index = this.#borrowedBooks.findIndex(x => x === book);
         if(index === -1) {
-            throw new Error("Book not found")
+            return "Book not found";
         }
         book.returnBook();
         this.#borrowedBooks.splice(index, 1);
+        return book;
     };
 
     hasBook(book) {
@@ -151,7 +152,7 @@ class Library {
 
     set name(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error("The name of the library cannot be empty");
+            return "The name of the library cannot be empty";
         }
         return this.#name = value;
     };
@@ -165,14 +166,8 @@ class Library {
     };
 
     addBook(book) {
-        if (!book.title) {
+        if (!(book instanceof Book)) {
             throw new Error("Book haven't title");
-        }
-        if (!book.author) {
-            throw new Error("Book haven't author");
-        }
-        if (typeof book.year !== "number") {
-            throw new Error("Year must be number!");
         }
         this.#books.push(book);
     };
