@@ -60,7 +60,7 @@ class Library {
         if (findBook) {
             return findBook.returnBook();
         } else {
-            return "Book not found"
+            return "Book not found";
         }
     };
 
