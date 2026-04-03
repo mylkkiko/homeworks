@@ -6,13 +6,13 @@ class Library {
 
     addBook(book) {
         if (!book.title) {
-            throw new Error("Book haven't title");
+            return "Book haven't title";
         }
         if (!book.author) {
-            throw new Error("Book haven't author");
+            return "Book haven't author";
         }
         if (typeof book.year !== "number") {
-            throw new Error("Year must be number!");
+            return "Year must be number!";
         }
         this.books.push(book);
     };

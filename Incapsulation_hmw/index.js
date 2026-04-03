@@ -17,7 +17,7 @@ class Book {
     
     set title(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error ("The title of the book cannot be empty");
+            console.log("The title of the book cannot be empty");
         }
         return this.#title = value;
     };
@@ -28,7 +28,7 @@ class Book {
 
     set author(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            throw new Error ("The author of the book cannot be empty");
+            console.log("The author of the book cannot be empty");
         }
         return this.#author = value;
     };
@@ -39,7 +39,7 @@ class Book {
 
     set year(value) {
         if(value < 0) {
-            throw new Error ("The year of publication cannot be a negative number");
+            console.log("The year of publication cannot be a negative number");
         }
         return this.#year = value;
     };
@@ -86,7 +86,7 @@ class Reader {
 
     set name(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            return "The name of the reader cannot be empty";
+            console.log("The name of the reader cannot be empty");
         }
         return this.#name = value;
     };
@@ -115,7 +115,6 @@ class Reader {
         }
         book.returnBook();
         this.#borrowedBooks.splice(index, 1);
-        return book;
     };
 
     hasBook(book) {
@@ -152,7 +151,7 @@ class Library {
 
     set name(value) {
         if(typeof value !== "string" || value.trim() === "") {
-            return "The name of the library cannot be empty";
+             console.log("The name of the library cannot be empty");
         }
         return this.#name = value;
     };
@@ -167,7 +166,7 @@ class Library {
 
     addBook(book) {
         if (!(book instanceof Book)) {
-            throw new Error("Book haven't title");
+            return "Book haven't title";
         }
         this.#books.push(book);
     };
@@ -237,40 +236,40 @@ library.addBook(book3);
 library.registerReader(reader1);
 library.registerReader(reader2);
 
-// console.log("=== Library info ===");
-// console.log(library.getLibraryInfo());
+console.log("=== Library info ===");
+console.log(library.getLibraryInfo());
 
-// console.log("=== All books ===");
-// console.log(library.showAllBooks());
+console.log("=== All books ===");
+console.log(library.showAllBooks());
 
-// console.log("=== Find by title ===");
-// console.log(library.findBookByTitle("1984"));
+console.log("=== Find by title ===");
+console.log(library.findBookByTitle("1984"));
 
-// console.log("=== Find by author ===");
-// console.log(library.findBooksByAuthor("George Orwell"));
+console.log("=== Find by author ===");
+console.log(library.findBooksByAuthor("George Orwell"));
 
-// console.log("=== Available books ===");
-// console.log(library.showAvailableBooks());
+console.log("=== Available books ===");
+console.log(library.showAvailableBooks());
 
-// console.log("=== Give book to reader ===");
-// library.giveBookToReader("The Hobbit", reader1);
-// console.log(reader1.showBorrowedBooks());
-// console.log(book1.getInfo());
+console.log("=== Give book to reader ===");
+library.giveBookToReader("The Hobbit", reader1);
+console.log(reader1.showBorrowedBooks());
+console.log(book1.getInfo());
 
-// console.log("=== Give another book to reader ===");
-// library.giveBookToReader("Harry Potter", reader1);
-// console.log(reader1.getInfo());
+console.log("=== Give another book to reader ===");
+library.giveBookToReader("Harry Potter", reader1);
+console.log(reader1.getInfo());
 
-// console.log("=== Try to borrow same book again ===");
-// library.giveBookToReader("The Hobbit", reader2);
+console.log("=== Try to borrow same book again ===");
+library.giveBookToReader("The Hobbit", reader2);
 
-// console.log("=== Return book ===");
-// library.acceptBookFromReader("The Hobbit", reader1);
-// console.log(reader1.showBorrowedBooks());
-// console.log(book1.getInfo());
+console.log("=== Return book ===");
+library.acceptBookFromReader("The Hobbit", reader1);
+console.log(reader1.showBorrowedBooks());
+console.log(book1.getInfo());
 
-// console.log("=== Final available books ===");
-// console.log(library.showAvailableBooks());
+console.log("=== Final available books ===");
+console.log(library.showAvailableBooks());
 
-// console.log("=== Final library info ===");
-// console.log(library.getLibraryInfo());
+console.log("=== Final library info ===");
+console.log(library.getLibraryInfo());
