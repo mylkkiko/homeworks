@@ -1,6 +1,6 @@
 // myCall
 Function.prototype.myCall = function (thisArg, ...args) {
-    thisArg = thisArg ?? globalThis; // проверяем контекст на null или undefined
+    thisArg = thisArg ?? globalThis;
     const key = Symbol(); // свойство объекта создаем через Symbol для того, чтобы оно было гарантированно уникальным
     thisArg[key] = this; // передача функции в объект
     const result = thisArg[key](...args); // вызываем функцию как метод объекта

@@ -151,7 +151,7 @@ class Library {
 
     set name(value) {
         if(typeof value !== "string" || value.trim() === "") {
-             console.log("The name of the library cannot be empty");
+            console.log("The name of the library cannot be empty");
         }
         return this.#name = value;
     };

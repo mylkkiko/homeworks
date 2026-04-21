@@ -22,6 +22,7 @@
 // console.log(myInstanceOf(null, Object)); 
 // console.log(myInstanceOf(123, Number)); 
 // console.log(myInstanceOf("hello", String)); 
+// console.log(myInstanceOf([1, 2, 3], Array)); 
 
 
 // function myNew(constructor, ...args) {
@@ -41,7 +42,6 @@
 //     this.model = model;
 //     return { custom: "returned object" };
 // }
-
 // const user = myNew(User, "Alex");
 // console.log(user.name); // Alex
 // console.log(Object.getPrototypeOf(user) === User.prototype); // true

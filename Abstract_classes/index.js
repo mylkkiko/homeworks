@@ -32,43 +32,43 @@
 // console.log(rect.getArea());
 
 
-// class StorageProvider {
-//     constructor() {
-//         if(new.target === StorageProvider) {
-//             throw new Error("Cannot instantiate interface class");
-//         }
-//     }
-//     upload(file) {
-//         throw new Error("Error");
-//     }
-//     download(filename) {
-//         throw new Error("Error");
-//     }
-// }
-// class LocalStorageProvider extends StorageProvider {
-//     constructor() {
-//         super();
-//     }
-//     upload(file) {}
-//     download(filename) {}
-// }
-// class CloudStorageProvider extends StorageProvider {
-//     constructor() {
-//         super();
-//     }
-//     upload(file) {}
-//     download(filename) {}
-// }
-// function useStorage(provider) {
-//     if(!(typeof provider.upload === "function") || !(typeof provider.download === "function")) {
-//         throw new Error("Invalid storage provider");
-//     }
-//     else {
-//         console.log("Works");
-//     }
-// }
-// useStorage(new LocalStorageProvider());
-// // useStorage({});
+class StorageProvider {
+    constructor() {
+        if(new.target === StorageProvider) {
+            throw new Error("Cannot instantiate interface class");
+        }
+    }
+    upload(file) {
+        throw new Error("Error");
+    }
+    download(filename) {
+        throw new Error("Error");
+    }
+}
+class LocalStorageProvider extends StorageProvider {
+    constructor() {
+        super();
+    }
+    upload(file) {}
+    download(filename) {}
+}
+class CloudStorageProvider extends StorageProvider {
+    constructor() {
+        super();
+    }
+    upload(file) {}
+    download(filename) {}
+}
+function useStorage(provider) {
+    if(!(typeof provider.upload === "function") || !(typeof provider.download === "function")) {
+        throw new Error("Invalid storage provider");
+    }
+    else {
+        console.log("Works");
+    }
+}
+useStorage(new LocalStorageProvider());
+// useStorage({});
 
 
 // class Animal {
