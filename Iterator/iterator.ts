@@ -6,52 +6,50 @@ interface ITrack {
     addedAt: Date;
 }
 
+interface IPlaylist {
+    addTrack(track: ITrack): void; 
+    getTracks(): ITrack[]; 
+    createIterator(iterator: PlaylistIterator): PlaylistIterator; 
+}
+
 class Track implements ITrack {
     constructor(
         public readonly name: string,
         public readonly singer: string,
         public readonly duration: number,
         public readonly numberOfAuditions: number,
-        public readonly addedAt: Date = new Date()
+        public readonly addedAt: Date = new Date()  
     ) {}
 }
 
-class Playlist {
-    private tracks: Track[] = [];
+class Playlist implements IPlaylist {
+    private tracks: ITrack[] = []; 
     public name: string; 
 
     constructor(name: string) {
         this.name = name;
     }
 
-    public addTrack(track: Track): void {
+    public addTrack(track: ITrack): void {
         this.tracks.push(track);
     }
 
-    public getTracks(): Track[] {
-        return [...this.tracks];
+    public getTracks(): ITrack[] {
+        return [...this.tracks]; 
     }
 
-    public getIteratorByDate(): DateAddedIterator {
-        return new DateAddedIterator(this);
-    }
-
-    public getIteratorByDuration(): DurationIterator {
-        return new DurationIterator(this);
-    }
-
-    public getIteratorByPopularity(): PopularityIterator {
-        return new PopularityIterator(this);
+    public createIterator(iterator: PlaylistIterator): PlaylistIterator {
+        return iterator;
     }
 }
 
-abstract class PlaylistIterator implements Iterator<Track> {
-    protected items: Track[];
-    private index: number = 0;
+abstract class PlaylistIterator implements Iterator<ITrack> {
+    protected items: ITrack[]; 
+    private index: number = 0;  
 
-    constructor(collection: Playlist) {
-        this.items = [...collection.getTracks()];
-        this.sort();
+    constructor(collection: IPlaylist) {
+        this.items = collection.getTracks();  
+        this.sort();                             
     }
 
     protected abstract sort(): void;
@@ -60,14 +58,14 @@ abstract class PlaylistIterator implements Iterator<Track> {
         return this.index < this.items.length;
     }
 
-    public next(): IteratorResult<Track> {
+    public next(): IteratorResult<ITrack> {
         if (this.hasNext()) {
             return { value: this.items[this.index++], done: false };
         }
         return { value: undefined, done: true };
     }
 
-    [Symbol.iterator](): Iterator<Track> {
+    [Symbol.iterator](): Iterator<ITrack> {
         return this;
     }
 }
@@ -90,13 +88,13 @@ class PopularityIterator extends PlaylistIterator {
     }
 }
 
-function displayIteratorResults<T>(
-    name: string,
-    iterator: Iterable<T>,       
-    formatFn: (item: T) => string
+function displayIteratorResults<ITrack>(
+    name: string, 
+    iterator: Iterable<ITrack>, 
+    formatFn: (item: ITrack) => string 
 ): void {
     console.log(`\n--- ${name} ---`);
-    for (const item of iterator) {
+    for (const item of iterator) {      
         console.log(formatFn(item));
     }
 }
@@ -114,18 +112,18 @@ myPlaylist.addTrack(track4);
 
 displayIteratorResults(
     "Сортировка по дате (от старых к новым)",
-    myPlaylist.getIteratorByDate(),
-    (t: Track) => `[${t.addedAt.toLocaleDateString('ru-RU')}] ${t.singer} - ${t.name}`
+    myPlaylist.createIterator(new DateAddedIterator(myPlaylist)),
+    (t: ITrack) => `[${t.addedAt.toLocaleDateString('ru-RU')}] ${t.singer} - ${t.name}`
 );
 
 displayIteratorResults(
     "Сортировка по длительности (по возрастанию)",
-    myPlaylist.getIteratorByDuration(),
-    (t: Track) => `${t.duration} сек. | ${t.name} (${t.singer})`
+    myPlaylist.createIterator(new DurationIterator(myPlaylist)),
+    (t: ITrack) => `${t.duration} сек. | ${t.name} (${t.singer})`
 );
 
 displayIteratorResults(
     "Сортировка по популярности (от менее популярных)",
-    myPlaylist.getIteratorByPopularity(),
-    (t: Track) => `${t.numberOfAuditions} прослушиваний | ${t.name}`
+    myPlaylist.createIterator(new PopularityIterator(myPlaylist)),
+    (t: ITrack) => `${t.numberOfAuditions} прослушиваний | ${t.name}`
 );
